@@ -63,9 +63,9 @@ jobs:
         continue-on-error: true
         with:
           command: pnpm run test:${{ matrix.browser }}
-        # env:
-        # Change this value according to what you need
-        # CYPRESS_BROWSER:${{matrix.browser}}
+
+      - name: Generate report
+        run: pnpm run generate-report
 
       - uses: actions/upload-artifact@v3
         with:
