@@ -1,0 +1,10 @@
+{
+  "json": {
+    "enabled": true,
+    "output": "jsonlogs/log.json"
+  },
+  "messages": {
+    "enabled": true,
+    "output": "jsonlogs/messages.ndjson"
+  }
+}

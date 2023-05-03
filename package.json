@@ -1,0 +1,51 @@
+{
+  "name": "cypress-ts-cucumber-template",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "cy:open:chrome": "cypress open --e2e --browser chrome",
+    "cy:open:firefox": "cypress open --e2e --browser firefox",
+    "cy:open:edge": "cypress open --e2e --browser microsoft-edge",
+    "prepare": "node -e \"try { require('husky').install() } catch (e) {if (e.code !== 'MODULE_NOT_FOUND') throw e}\"",
+    "type-check": "tsc --noEmit",
+    "test:chrome": "pnpm run pre-test && cypress run --e2e --browser chrome",
+    "test:firefox": "pnpm run pre-test && cypress run --e2e --browser firefox",
+    "test:edge": "pnpm run pre-test && cypress run --e2e --browser edge",
+    "pre-commit": "npx lint-staged",
+    "pre-test": "rm -rf ./jsonlogs",
+    "generate-report": "node scripts/generate-html-reports.mjs",
+    "open-report": "node scripts/open-report.mjs"
+  },
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^17.0.0",
+    "@types/eslint": "^8.37.0",
+    "@types/node": "^18.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "cypress": "^12.11.0",
+    "dotenv": "^16.0.3",
+    "esbuild": "^0.17.18",
+    "esbuild-loader": "^3.0.1",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "multiple-cucumber-html-reporter": "^3.4.0",
+    "open": "^9.1.0",
+    "prettier": "^2.8.8",
+    "typescript": "^4.9.5",
+    "webpack": "^5.81.0"
+  },
+  "lint-staged": {
+    "cypress/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ],
+    "*.json": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@cypress/webpack-preprocessor": "^5.17.1",
+    "short-uuid": "^4.2.2"
+  }
+}

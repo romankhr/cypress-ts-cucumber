@@ -1,0 +1,73 @@
+name: run-test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Test
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox, edge]
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 7.26.1
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: "pnpm"
+
+      - name: Fetch Edge Browser
+        run: curl -O https://packages.microsoft.com/repos/edge/pool/main/m/microsoft-edge-stable/microsoft-edge-stable_112.0.1722.64-1_amd64.deb
+
+      - name: Install Edge Browser
+        if: matrix.browser == 'edge'
+        run: sudo dpkg -i ./microsoft-edge-stable_112.0.1722.64-1_amd64.deb
+
+      - name: Display Edge version
+        if: matrix.browser == 'edge'
+        run: microsoft-edge --version
+
+      - name: Display Chrome version
+        if: matrix.browser == 'chrome'
+        run: google-chrome --version
+
+      - name: Display Firefox version
+        if: matrix.browser == 'firefox'
+        run: firefox --version
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Type Check
+        run: pnpm run type-check
+
+      - name: Run Cypress Test On ${{matrix.browser}} Browser
+        uses: cypress-io/github-action@v5
+        # Github still doesn't have an 'allow-error' option, so the overall result of a Cypress test will always return as passed.
+        # However, we still want to continue to upload artifacts (test report) even if there are failed tests.
+        # See : https://github.com/orgs/community/discussions/15452
+        continue-on-error: true
+        with:
+          command: pnpm run test:${{ matrix.browser }}
+        env:
+          # Change this value according to what you need
+          CYPRESS_BROWSER:${{matrix.browser}}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: report-${{ matrix.browser }}
+          path: ./report
