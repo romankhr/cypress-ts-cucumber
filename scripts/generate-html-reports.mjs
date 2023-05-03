@@ -16,9 +16,7 @@ generate({
     device: isGithubActions ? "Github Actions" : "Local Machine",
     platform: {
       name: "Ubuntu",
-      version: process.env.GITHUB_ACTIONS
-        ? process.env.CYPRESS_UBUNTU__VERSION
-        : "20.04",
+      version: isGithubActions ? process.env.CYPRESS_UBUNTU__VERSION : "20.04",
     },
   },
 });
