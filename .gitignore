@@ -28,3 +28,5 @@ cypress/video
 cypress/screenshots
 jsonlogs 
 report
+
+.env

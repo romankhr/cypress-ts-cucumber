@@ -66,6 +66,9 @@ jobs:
 
       - name: Generate report
         run: pnpm run generate-report
+        env:
+          CYPRESS_BROWSER: ${{ matrix.browser }}
+          CYPRESS_UBUNTU__VERSION: 22.04
 
       - uses: actions/upload-artifact@v3
         with:
