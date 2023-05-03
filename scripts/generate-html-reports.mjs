@@ -5,8 +5,6 @@ const isGithubActions = process.env.GITHUB_ACTIONS === "true";
 
 configEnv();
 
-console.log("Browser version:", process.env.CYPRESS_BROWSER_VERSION);
-
 generate({
   jsonDir: "jsonlogs",
   reportPath: "./report/cucumber-html-report",
