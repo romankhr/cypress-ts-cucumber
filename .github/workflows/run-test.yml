@@ -39,15 +39,18 @@ jobs:
 
       - name: Display Edge version
         if: matrix.browser == 'edge'
-        run: microsoft-edge --version
+        id: edge-version
+        run: echo ::set-output name=version::$(microsoft-edge --version)
 
       - name: Display Chrome version
         if: matrix.browser == 'chrome'
-        run: google-chrome --version
+        id: chrome-version
+        run: echo ::set-output name=version::$(google-chrome --version)
 
       - name: Display Firefox version
         if: matrix.browser == 'firefox'
-        run: firefox --version
+        id: firefox-version
+        run: echo ::set-output name=version::$(firefox --version)
 
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
@@ -69,6 +72,7 @@ jobs:
         env:
           CYPRESS_BROWSER: ${{ matrix.browser }}
           CYPRESS_UBUNTU__VERSION: 22.04
+          CYPRESS_BROWSER_VERSION: ${{ steps[format('{0}-version', matrix.browser)].outputs.version }}
 
       - uses: actions/upload-artifact@v3
         with:
