@@ -58,4 +58,5 @@ export default defineConfig({
   },
   video: false,
   screenshotOnRunFailure: true,
+  experimentalModifyObstructiveThirdPartyCode: true,  
 });
