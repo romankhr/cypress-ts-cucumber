@@ -6,5 +6,5 @@ Feature: Login tests
   Scenario: Successful login
     Given I am open the login page
     When Click login button on login page
-    And Insert username "VVVDemoUserOne@hrvysthedge.onmicrosoft.com" and password "TrackStar12@" on on login page
+    And Insert username "VVVDemoUserOne@hrvysthedge.onmicrosoft.com" and password "testRJO@2023" on on login page
     
