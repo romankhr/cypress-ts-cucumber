@@ -1,8 +1,5 @@
 Feature: Login tests
-  As a registered user
-  I want to be able to login
-  So that I can access my account
-
+ 
   @ui
   @smoke
   @HRV-001
