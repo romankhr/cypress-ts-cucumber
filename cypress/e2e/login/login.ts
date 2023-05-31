@@ -3,7 +3,7 @@ import { LoginPage } from "pages";
 import { HomePage } from "pages";
 
 Given("I am open the login page", () => {
-  cy.visit("https://qas-eastus-hrvyst-app.azurewebsites.net/login");
+  LoginPage.visit();
 });
 
 When("Click login button on login page", () => {
