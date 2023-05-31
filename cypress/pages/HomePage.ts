@@ -1,18 +1,12 @@
-class CoursePage {
-  readonly url: string = "/";
+class HomePage {
 
   elements = {
-    title: () => cy.get("h1"),
-    link: () => cy.get("a"),
+    title: () => cy.get("title"),
   };
 
-  visit() {
-    cy.visit(this.url);
-  }
-
-  clickLink() {
-    this.elements.link().click();
+  verifyTitle() {
+    this.elements.title().should("have.text", "Transactions - HRVYSTHEDGE");
   }
 }
 
-export default new CoursePage();
+export default new HomePage();
