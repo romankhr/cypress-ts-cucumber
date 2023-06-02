@@ -54,7 +54,7 @@ export default defineConfig({
   e2e: {
     specPattern: "**/*.feature",
     setupNodeEvents,
-    baseUrl: "https://example.com",
+    baseUrl: "https://qas-eastus-hrvyst-app.azurewebsites.net/login",
   },
   video: false,
   screenshotOnRunFailure: true,

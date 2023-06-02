@@ -7,7 +7,7 @@ class LoginPage {
 
     };
     visit() {
-        cy.visit(this.baseURL);
+        cy.visit("./");
     }
 
     clickLoginButton() {
@@ -39,7 +39,7 @@ class LoginPage {
             cy.get('input[type="email"]').should('be.visible').type(email);
             cy.get('#idSIButton9').click();
             cy.get('#usernameError').then($emailError => {
-                expect($emailError.text()).to.equal('This username may be incorrect. Make sure that you typed it correctly. Otherwise, contact your admin.');
+                expect($emailError.text()).to.equal('This username may be incorrect. Make sure you typed it correctly. Otherwise, contact your admin.');
               });
         });
     }
@@ -51,7 +51,7 @@ class LoginPage {
             cy.get('#idSIButton9').click();
             cy.get('input[type="password"]').should('be.visible').type(password);
             cy.get('#idSIButton9').click();
-            cy.get("#passwordError").should('have.text', 'Your account or password is incorrect. If you can\'t remember your password, reset it now.')
+            cy.get("#passwordError").should('have.text', 'Your account or password is incorrect. If you don\'t remember your password, reset it now.')
         });
     }
 }
