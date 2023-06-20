@@ -7,7 +7,7 @@ class LoginPage {
 
     };
     visit() {
-        cy.visit(this.baseURL);
+        cy.visit("./");
     }
 
     clickLoginButton() {
