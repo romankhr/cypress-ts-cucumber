@@ -53,10 +53,19 @@ async function setupNodeEvents(
 export default defineConfig({
   e2e: {
     specPattern: "**/*.feature",
+    pageLoadTimeout: 80000,
+		defaultCommandTimeout: 10000,
+		video: false,
+		retries: 0,
+		scrollBehavior: 'center',
+		chromeWebSecurity: false,
+		watchForFileChanges: true,
     setupNodeEvents,
-    baseUrl: "https://example.com",
+    baseUrl: "https://qas-eastus-hrvyst-app.azurewebsites.net/login",
+    viewportHeight: 1080,
+		viewportWidth: 1920,
   },
   video: false,
   screenshotOnRunFailure: true,
-  experimentalModifyObstructiveThirdPartyCode: true,  
+  experimentalModifyObstructiveThirdPartyCode: true,  
 });
